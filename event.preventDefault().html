@@ -1,0 +1,12 @@
+<form id="fm">
+  <label for="text"> Text input </label>
+  <input type="text" id="text" />
+</form>
+
+<script>
+  let form = document.getElementById("fm")
+  form.addEventListener("submit", function (event) {
+    // remove this line and the browser will reload once the user hits carriage return (i.e. "Enter")
+    event.preventDefault();
+  });
+</script>
