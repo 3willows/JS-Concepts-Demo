@@ -1,0 +1,37 @@
+<title>Form internals demo</title>
+
+<form action="https://www.google.com/search" id="fm">
+  <label for="only"> Search Google </label>
+  <input type="text" id="only" name="q" />
+  <button type="submit">submit</button>
+</form>
+<div id="display"></div>
+
+<script>
+  let form = document.getElementById("fm");
+  let display = document.getElementById("display");
+
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let formData = new FormData(form);
+    let url = new URL(form.action);
+    let params = new URLSearchParams(formData);
+    url.search = params.toString();
+
+    display.innerText = `
+    Request URL:  ${url.toString()} \n
+    Request Method: ${form.method} \n
+    Request Parameters: ${params}
+
+    Making the Google search in 10 seconds.
+    `
+    
+    setTimeout(() => {
+      window.location.href = url.toString();
+    }, 10000)
+
+  });
+
+</script>
